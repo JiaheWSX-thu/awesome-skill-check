@@ -1,5 +1,5 @@
 ---
-name: skill-check
+name: awesome-skill-check
 description: 审查与检验 Skill 质量的标准门禁技能。This skill should be used when 用户要求检查、评审、审核、review 一个 Skill（SKILL.md 文件或技能目录），创建/新建/编写一个 Skill 的过程中需要质量把关（初稿完成后先审再用），评估某个想法值不值得做成 Skill，或排查 Skill 输出不稳定、不好用、结果飘忽的问题。基于「六要素 · 六步骤」审核模型逐项把关，输出结构化审核报告（四档结论 + 逐项核对表 + 分级问题清单 + 可执行修复建议）。触发词：检查 skill、评审 skill、审核 skill、review skill、skill 质检、创建/新建/写一个 skill、这个 skill 写得怎么样、skill 不稳定/不好用、值不值得做成 skill。
 agent_created: true
 ---

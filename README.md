@@ -106,7 +106,7 @@ Plain Markdown, verdict first: **verdict** (Excellent / Pass / Needs fixes / Fai
 
 **Requirements**: an agent that supports SKILL.md-based skills (WorkBuddy, Claude Code, CodeBuddy, Codex, TRAE, Qoder, …).
 
-**Get the skill**: unzip `skill-check.zip`, or clone this repository, then copy the `skill-check/` folder into your agent's skills directory:
+**Get the skill**: unzip `awesome-skill-check.zip`, or clone this repository, then copy the `awesome-skill-check/` folder into your agent's skills directory:
 
 | Agent | Skills directory |
 |---|---|
@@ -135,7 +135,7 @@ Restart or reload the agent; the skill triggers from natural language.
 ## Repository layout
 
 ```
-skill-check/
+awesome-skill-check/
 ├── SKILL.md                          # audit workflow, input & asking rules, report template, validation red lines
 ├── references/
 │   ├── quality-standards.md          # grading rules for the 6 Essentials & quality traits, with good/bad examples
