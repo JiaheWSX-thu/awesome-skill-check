@@ -1,15 +1,15 @@
-# Skill Check
+# awesome-skill-check
 
 > An audit gate for agent Skills — full audits, idea evaluation, and instability troubleshooting, driven by the 6 Essentials & 6 Steps model.
 
-Skill Check turns "is this skill any good?" into a repeatable audit instead of a gut feeling. Point it at any `SKILL.md` (or a whole skill directory) and it produces a structured audit report: a four-level verdict, an item-by-item checklist with quoted evidence, P0/P1/P2 graded issues, and before→after fix suggestions. It also fires **at creation time** — audit a new skill's first draft before it ever ships — and it can troubleshoot a working skill whose output drifts.
+awesome-skill-check turns "is this skill any good?" into a repeatable audit instead of a gut feeling. Point it at any `SKILL.md` (or a whole skill directory) and it produces a structured audit report: a four-level verdict, an item-by-item checklist with quoted evidence, P0/P1/P2 graded issues, and before→after fix suggestions. It also fires **at creation time** — audit a new skill's first draft before it ever ships — and it can troubleshoot a working skill whose output drifts.
 
 ## What it solves
 
 - **Quality drift** — a skill that works today and falls apart tomorrow, because its examples and validation rules were never written down.
 - **Experience stuck in one head** — good prompting practice that never gets packaged, so nobody else can reuse it.
 - **No shared baseline** — every teammate writes skills their own way, with no common definition of "good".
-- **Premature packaging** — turning a one-off task into a skill is wasted effort; Skill Check tells you before you invest.
+- **Premature packaging** — turning a one-off task into a skill is wasted effort; awesome-skill-check tells you before you invest.
 
 ## The audit model: 6 Essentials & 6 Steps
 
@@ -37,7 +37,7 @@ Skill Check turns "is this skill any good?" into a repeatable audit instead of a
 
 **Three scenarios**: full audit (default — including first drafts at creation time) · idea evaluation (worth packaging / too early / need more info) · instability troubleshooting (symptom → missing essential → fix).
 
-**Asking vs. assuming**: Skill Check does not interrogate. It asks only when (a) no skill content was provided, (b) troubleshooting lacks a real failure sample, or (c) a fix involves trade-offs — max 3 questions, each with a default assumption and a degradation path.
+**Asking vs. assuming**: awesome-skill-check does not interrogate. It asks only when (a) no skill content was provided, (b) troubleshooting lacks a real failure sample, or (c) a fix involves trade-offs — max 3 questions, each with a default assumption and a degradation path.
 
 ## Case 1 — At creation: block, fix, release, then elevate
 
@@ -79,7 +79,7 @@ User adopts → V2 re-audit → **Excellent**. V1 works, V2 works well — one s
 
 **User**: "My weekly-summary skill is flaky." No run sample provided.
 
-**Skill Check asks** (rule: no sample → ask, max 3 questions, with a degradation path):
+**awesome-skill-check asks** (rule: no sample → ask, max 3 questions, with a degradation path):
 
 > 1. What input did you feed it last time the output was bad?
 > 2. What did the output actually look like?
@@ -96,7 +96,7 @@ User adopts → V2 re-audit → **Excellent**. V1 works, V2 works well — one s
 
 - "I merge three data reports into one format every week — done it 5 times" → **Worth packaging** (repeated 3+ times + team baseline).
 - "A one-off special report for tomorrow's client visit" → **Too early** — premature packaging = wasted time.
-- "Maybe a writing skill?" → **Need more info** — Skill Check asks: how many times last month? (default assumption: ≥3 → worth it). User: "Once." → **Too early**; collect two more similar runs, then re-evaluate.
+- "Maybe a writing skill?" → **Need more info** — awesome-skill-check asks: how many times last month? (default assumption: ≥3 → worth it). User: "Once." → **Too early**; collect two more similar runs, then re-evaluate.
 
 ## Output: the audit report
 

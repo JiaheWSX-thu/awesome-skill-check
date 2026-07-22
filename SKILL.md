@@ -4,7 +4,7 @@ description: 审查与检验 Skill 质量的标准门禁技能。This skill shou
 agent_created: true
 ---
 
-# Skill Check —— Skill 质量审核门禁
+# awesome-skill-check —— Skill 质量审核门禁
 
 ## 用途
 
