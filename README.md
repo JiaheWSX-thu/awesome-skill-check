@@ -22,7 +22,7 @@ awesome-skill-check turns "is this skill any good?" into a repeatable audit inst
 | 1 | Trigger name | Verb + object, with concrete trigger phrases in the description — recognizable at a glance |
 | 2 | Input requirements | Required / optional / format stated precisely — no "just give me the stuff" |
 | 3 | Instructions | Numbered, executable steps; edge-case rules stated explicitly, not implied |
-| 4 | Output format | A structured, field-level contract with an empty-section fallback ("无") |
+| 4 | Output format | A structured, field-level contract with an empty-section fallback ("N/A") |
 | 5 | Examples | Good input → good output, plus a negative example to avoid — the biggest lever for stability |
 | 6 | Validation rules | A checklist of red lines the output must pass before shipping — more is better |
 
@@ -48,29 +48,29 @@ A first-draft skill arrives for creation-time audit:
 ```markdown
 ---
 name: data-helper
-description: 帮你处理数据
+description: Helps you process data
 ---
-把数据发给我，我帮你分析得清晰美观。
+Send me the data and I will analyze it for you, nice and clear.
 ```
 
 **Verdict: Fail — blocked.** 5 of 6 Essentials missing. Every P0 ships with a before→after fix:
 
 | P0 issue | Before (quoted) | After (fix) |
 |---|---|---|
-| Dead trigger | `name: data-helper`, "帮你处理数据" | `name: data-weekly-summary` + description with concrete trigger phrases ("汇总周报、周报合并、weekly summary") |
-| No input contract | "把数据发给我" | Required: 2+ weekly reports (CSV paths or pasted tables); optional: aggregation scope; >5000 rows → confirm sampling first |
-| Non-executable instructions | "我帮你分析" | 1. Read all reports, flag column mismatches; 2. Merge into one master table; 3. Mark report-specific metrics; 4. Output the summary |
-| Unverifiable output | "清晰美观" | Fixed 3 sections: master table / discrepancies ("无" if none) / unique metrics per report |
+| Dead trigger | `name: data-helper`, "Helps you process data" | `name: data-weekly-summary` + description with concrete trigger phrases ("merge weekly reports", "weekly summary", "combine reports") |
+| No input contract | "Send me the data" | Required: 2+ weekly reports (CSV paths or pasted tables); optional: aggregation scope; >5000 rows → confirm sampling first |
+| Non-executable instructions | "I will analyze it for you" | 1. Read all reports, flag column mismatches; 2. Merge into one master table; 3. Mark report-specific metrics; 4. Output the summary |
+| Unverifiable output | "nice and clear" | Fixed 3 sections: master table / discrepancies ("N/A" if none) / unique metrics per report |
 | No examples | — | Add one complete pair: two 10-row sample reports → the full expected summary |
 
-**P1**: add a negative example (e.g. "missed a discrepancy flag") and 3+ validation rules ("all sections present, missing ones output 无; every input report included; raw numbers untouched").
+**P1**: add a negative example (e.g. "missed a discrepancy flag") and 3+ validation rules ("all sections present, missing ones output N/A; every input report included; raw numbers untouched").
 
 User applies the fixes → re-audit → **Pass, gate opens**. One block + one re-check = converged in 2 rounds.
 
 **Then one elevation round (Pass → Excellent).** Release is not the finish line; the audit closes with grounded P2 suggestions, each tied to a concrete essential:
 
 1. Add a boundary sample (an over-5000-row report) to prove the sampling-confirmation rule actually fires — strengthens *Gate*.
-2. Collect the team's slang name for the task ("并周报") into the trigger phrases — strengthens *Trigger name*.
+2. Collect the team's slang name for the task (e.g. "merge-weekly") into the trigger phrases — strengthens *Trigger name*.
 3. Turn this draft's own P0s into an author self-check ("before submitting any new skill, verify all 6 Essentials") — same mistakes never recur.
 
 User adopts → V2 re-audit → **Excellent**. V1 works, V2 works well — one step per round, every step executable.
@@ -86,9 +86,9 @@ User adopts → V2 re-audit → **Excellent**. V1 works, V2 works well — one s
 > 3. What did you expect instead?
 > (No sample available? I'll run a static audit and mark the report "no dynamic troubleshooting".)
 
-**User replies**: "Pasted three reports; the 'discrepancies' section appears sometimes, vanishes other times; I expect every section to always show, with 无 when empty."
+**User replies**: "Pasted three reports; the 'discrepancies' section appears sometimes, vanishes other times; I expect every section to always show, with N/A when empty."
 
-**Root cause located**: the output format never specified an empty-section fallback (Essential 4), and the validation checklist never verified section completeness (Essential 6). **Fix**: add the "missing section → output 无" rule to both the format spec and the validation checklist, plus one no-discrepancy example to the sample library. Every answer from the user lands directly in the diagnosis — no question is wasted.
+**Root cause located**: the output format never specified an empty-section fallback (Essential 4), and the validation checklist never verified section completeness (Essential 6). **Fix**: add the "missing section → output N/A" rule to both the format spec and the validation checklist, plus one no-discrepancy example to the sample library. Every answer from the user lands directly in the diagnosis — no question is wasted.
 
 **Then harden it (one step beyond the fix).** The failure sample itself joins the example library as a negative example with its cause annotated, and the team adopts a habit: every real-world failure gets brought back into the audit, becoming an example or a validation rule. The skill's path: **V1 runs → V2 stops drifting → V3 stays stable** — each problem happens only once.
 
@@ -121,10 +121,11 @@ Restart or reload the agent; the skill triggers from natural language.
 
 ## Usage triggers
 
-- **Audit**: "review this skill" / "audit my skill" / "检查 skill" / "评审 skill" / "审核 skill"
-- **Creation-time**: "创建一个 skill" / "新建 skill" / "帮我写个 skill" — the audit fires on the first draft, before use or release
-- **Evaluation**: "is this idea worth a skill?" / "值不值得做成 skill"
-- **Troubleshooting**: "my skill output is unstable" / "skill 不稳定" / "skill 不好用、输出飘忽"
+- **Audit**: "review this skill" / "audit my skill" / "check this skill"
+- **Creation-time**: "create a skill" / "new skill" / "help me write a skill" — the audit fires on the first draft, before use or release
+- **Evaluation**: "is this idea worth a skill?"
+- **Troubleshooting**: "my skill output is unstable" / "skill output drifts"
+- Chinese-language trigger phrases are also supported natively.
 
 ## FAQ
 
@@ -143,6 +144,8 @@ awesome-skill-check/
 ├── README.md
 └── LICENSE
 ```
+
+Note: `SKILL.md` and `references/` are written in Chinese by design — the skill serves Chinese-speaking users and triggers natively on Chinese phrases; this README is the English entry point.
 
 ## License
 
